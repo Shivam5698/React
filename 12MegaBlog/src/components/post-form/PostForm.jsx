@@ -16,7 +16,8 @@ function PostForm({post}) {
     }) 
 
     const navigate=useNavigate()
-    const userData=useSelector(state=>state.user.userData)
+    // ✅ Humara slice 'auth' ke naam se saved hai
+    const userData = useSelector((state) => state.auth.userData);
     
     const submit=async(data)=>{
         if(post){
