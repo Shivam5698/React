@@ -1,4 +1,4 @@
-import React,{useCallback} from 'react'
+import {useEffect,useCallback} from 'react'
 import { useForm} from 'react-hook-form'
 import {Button,Input,Select,RTE} from '../index'
 import appwriteService from "../../appwrite/config";
@@ -63,8 +63,7 @@ function PostForm({post}) {
    },[]);
 
   
-   React.useEffect(() => {
-    // eslint-disable-next-line
+   useEffect(() => {
         const subscription = watch((value, { name }) => {
             if (name === "title") {
                 setValue("slug", slugTransform(value.title), { shouldValidate: true });
