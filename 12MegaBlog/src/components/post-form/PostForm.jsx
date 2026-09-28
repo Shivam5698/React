@@ -75,18 +75,18 @@ function PostForm({post}) {
     }, [watch, slugTransform, setValue]); 
 
   return (
-   <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+    <form onSubmit={handleSubmit(submit)} className="card-modern grid grid-cols-1 gap-8 p-5 sm:p-8 lg:grid-cols-3 lg:gap-10">
+                <div className="min-w-0 space-y-5 lg:col-span-2">
                 <Input
-                    label="Title :"
+                    label="Title"
                     placeholder="Title"
-                    className="mb-4"
+                   className="input-modern"
                     {...register("title", { required: true })}
                 />
                 <Input
-                    label="Slug :"
+                    label="Slug"
                     placeholder="Slug"
-                    className="mb-4"
+                    className="input-modern"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
@@ -94,30 +94,45 @@ function PostForm({post}) {
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
-                <Input
-                    label="Featured Image :"
-                    type="file"
-                    className="mb-4"
-                    accept="image/png, image/jpg, image/jpeg, image/gif"
-                    {...register("image", { required: !post })}
-                />
+            <div className="min-w-0 space-y-5 lg:col-span-1">
+                <div>
+                    <p className="field-label">Featured image</p>
+                    {/* UI-TODO: Add drag-and-drop handling and a newly selected image preview when file-input event behavior is approved. */}
+                    <label className="group flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-(--border) bg-indigo-500/[0.03] px-5 py-6 text-center hover:border-(--primary) hover:bg-indigo-500/[0.06] focus-within:ring-2 focus-within:ring-indigo-500/40">
+                        <span className="mb-3 grid size-11 place-items-center rounded-xl bg-indigo-500/10 text-(--primary)">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 16V4m0 0L7 9m5-5 5 5" />
+                                <path d="M4 16.5v2A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-2" />
+                            </svg>
+                        </span>
+                        <span className="text-sm font-semibold text-(--text-h)">Choose an image</span>
+                        <span className="mt-1 text-xs text-(--text-muted)">PNG, JPG, or GIF</span>
+                        <input
+                            type="file"
+                            className="peer sr-only"
+                            accept="image/png, image/jpg, image/jpeg, image/gif"
+                            {...register("image", { required: !post })}
+                        />
+                    </label>
+                </div>
                 {post && (
-                    <div className="w-full mb-4">
+                    <div className="w-full overflow-hidden rounded-2xl border border-(--border) bg-(--surface-solid) p-2">
                         <img
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
-                            className="rounded-lg"
+                            loading="lazy"
+                            decoding="async"
+                            className="aspect-video w-full rounded-xl object-cover"
                         />
                     </div>
                 )}
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
-                    className="mb-4"
+                    className="capitalize"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button type="submit" className="w-full lg:mt-2">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

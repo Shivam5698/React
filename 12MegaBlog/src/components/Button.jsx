@@ -8,8 +8,18 @@ function Button({
     className='',
     ...props
  }) {
+  const colorVariants = {
+    'bg-blue-600': 'btn-primary',
+    'bg-green-500': 'btn-success',
+    'bg-red-500': 'btn-danger',
+  }
+  const visualVariant = colorVariants[bgColor] || 'btn-primary'
+  const legacyBg = colorVariants[bgColor] ? '' : bgColor
+  const legacyText = textColor === 'text-white' && colorVariants[bgColor] ? '' : textColor
+  const legacyColors = `${legacyBg} ${legacyText}`
+
   return (
-    <button className={`px-4 py-2 rounded-lg ${className} ${bgColor} ${textColor} ${type}`} {...props}>{children}</button>
+    <button type={type} className={`${visualVariant} ${className} ${legacyColors}`} {...props}>{children}</button>
   )
 }
 

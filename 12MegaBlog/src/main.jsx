@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -7,11 +7,9 @@ import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home.jsx'
 import { AuthLayout, Login } from './components/index.js'
+import { AddPostPage, EditPostPage, PostFormFallback } from './pages/LazyPostRoutes.jsx'
 
-
-import AddPost from "./pages/AddPost";
 import Signup from './pages/Signup'
-import EditPost from "./pages/EditPost";
 
 import Post from "./pages/Post";
 
@@ -56,7 +54,9 @@ const router=createBrowserRouter([
             element: (
                 <AuthLayout authentication>
                     {" "}
-                    <AddPost />
+                  <Suspense fallback={<PostFormFallback />}>
+                        <AddPostPage />
+                  </Suspense>
                 </AuthLayout>
             ),
         },
@@ -65,7 +65,9 @@ const router=createBrowserRouter([
             element: (
                 <AuthLayout authentication>
                     {" "}
-                    <EditPost />
+                  <Suspense fallback={<PostFormFallback />}>
+                        <EditPostPage />
+                  </Suspense>
                 </AuthLayout>
             ),
         },

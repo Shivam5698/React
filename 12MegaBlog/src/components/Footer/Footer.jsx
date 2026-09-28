@@ -1,142 +1,107 @@
-// import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Logo from '../Logo';
 
 function Footer() {
   return (
-     <section className="relative overflow-hidden py-10 bg-gray-400 border border-t-2 border-t-black">
-            <div className="relative z-10 mx-auto max-w-7xl px-4">
-                <div className="-m-6 flex flex-wrap">
-                    <div className="w-full p-6 md:w-1/2 lg:w-5/12">
-                        <div className="flex h-full flex-col justify-between">
-                            <div className="mb-4 inline-flex items-center">
-                                <Logo width="100px" />
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-600">
-                                    &copy; Copyright 2023. All Rights Reserved by DevUI.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-                        <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                                Company
-                            </h3>
-                            <ul>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Features
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Pricing
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Affiliate Program
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Press Kit
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-                        <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                                Support
-                            </h3>
-                            <ul>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Account
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Help
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Contact Us
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Customer Support
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="w-full p-6 md:w-1/2 lg:w-3/12">
-                        <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                                Legals
-                            </h3>
-                            <ul>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Terms &amp; Conditions
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Licensing
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <footer className="defer-render relative mt-auto border-t border-(--border) bg-(--surface) py-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+          <div className="col-span-2 lg:col-span-1">
+            <div className="mb-4 inline-flex items-center">
+              <Logo width="auto" />
             </div>
-        </section>
+            <p className="max-w-xs text-sm text-(--text-muted)">
+              A thoughtful space for ideas, stories, and perspectives worth sharing.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-(--text-h)">
+              Company
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Affiliate Program
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Press Kit
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-(--text-h)">
+              Support
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Account
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Help
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Customer Support
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-(--text-h)">
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link className="rounded-sm text-sm text-(--text-muted) hover:text-(--primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50" to="/">
+                  Licensing
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div className="mt-10 border-t border-(--border) pt-5">
+          <p className="text-xs text-(--text-muted)">
+            &copy; {new Date().getFullYear()} MegaBlog. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   )
 }
 

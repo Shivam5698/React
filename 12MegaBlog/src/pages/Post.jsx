@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
-import { Button, Container } from "../components";
+import { Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 
@@ -33,34 +33,40 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
+        <div className="page-enter w-full flex-1 py-12 md:py-16">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+                <article className="mx-auto w-full max-w-4xl">
+                {isAuthor && (
+                    <div className="danger-toolbar mb-6 flex w-fit max-w-full flex-wrap items-center gap-2 rounded-2xl p-1.5">
+                        <>
+                            <Link to={`/edit-post/${post.$id}`} className="btn-secondary h-11 px-4">
+                                <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m15 5 4 4M4 20l4-.8L19 8a2.1 2.1 0 0 0-3-3L5 16Z" /><path d="M13.5 6.5 17.5 10.5" /></svg>
+                                Edit
+                            </Link>
+                            <button type="button" className="btn-danger-soft h-11 px-4" onClick={deletePost}>
+                                <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16m-10 4v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3" /></svg>
+                                Delete
+                            </button>
+                        </>
+                    </div>
+                )}
+                <div className="relative mb-10 aspect-[16/9] max-h-[28rem] overflow-hidden rounded-3xl border border-(--border) bg-(--surface) p-1.5 shadow-lg shadow-slate-950/5">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
-                        className="rounded-xl"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        className="size-full rounded-[1.35rem] object-cover"
                     />
-
-                    {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
-                            </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
-                        </div>
-                    )}
                 </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                <div className="mb-8 w-full">
+                    <h1 className="text-4xl font-bold leading-tight text-(--text-h) sm:text-5xl">{post.title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="prose-content mx-auto max-w-prose">
                     {parse(post.content)}
-                    </div>
+                </div>
+                </article>
             </Container>
         </div>
     ) : null;

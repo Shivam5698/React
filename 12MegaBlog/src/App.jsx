@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import './App.css'
 import authService from './appwrite/auth'
 import { login, logout } from "./store/authSlice"
 import Header from "./components/Header/Header.jsx"
 import Footer from "./components/Footer/Footer.jsx"
+import ScrollToTop from './components/ScrollToTop.jsx'
+import Skeleton from './components/ui/Skeleton.jsx'
 import { Outlet } from 'react-router-dom' // Ye import zaroori hai
 
 function App() {
@@ -24,17 +25,22 @@ function App() {
   }, []) // <-- Yahan empty array [] lagana bohot zaroori hai!
 
   return !loading ? (
-    /* Yahan text-center add kiya hai aur sir ka original layout rakha hai */
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400 text-center mt-10">
-      <div className='w-full block'>
-        <Header />
-        <main>
-           <Outlet /> {/* Yahan TODO hatakar Outlet laga diya hai */}
-        </main>
-        <Footer />
-      </div>
+    <div className="relative isolate flex min-h-screen w-full flex-col bg-transparent text-(--text)">
+      <a className="skip-link" href="#main">Skip to content</a>
+      <ScrollToTop />
+      <Header />
+      <main id="main" className="relative z-10 flex flex-grow flex-col">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
-  ) : null
+  ) : (
+    <div className="flex min-h-screen w-full flex-col justify-center gap-4 px-6" aria-busy="true" aria-label="Loading MegaBlog">
+      <Skeleton className="mx-auto h-10 w-48" />
+      <Skeleton className="mx-auto h-64 w-full max-w-5xl rounded-3xl" />
+      <Skeleton className="mx-auto h-4 w-2/3 max-w-2xl" />
+    </div>
+  )
 }
 
 export default App
